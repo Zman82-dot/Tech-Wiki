@@ -1,0 +1,59 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia!!
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar"style="background-image:url(https://www.udacity.com/blog/wp-content/uploads/2021/03/AI-vs-Deep-Learning_Blog-scaled.jpeg);color:whitesmoke;">
+    <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="#" style="color:whitesmoke;font-size:large;"><h3><b>Tech-Wiki</b></h3></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+    <li>
+    <a class="btn btn-link" href="#"style="color:whitesmoke;">{{ user.first_name }}<b>{{ user.username }}</b></a>
+    <a class="btn btn-link" href="{% url 'logout' %}" style="color:whitesmoke;">👤 Logout</a>
+    </li>
+    {% else %}
+    <li>
+    <form class="form-inline" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        👤
+    <input type="text" class="form-control" placeholder="Username" name="username" >
+    <input type="password" class="form-control" placeholder="Username" name="psw" >
+    <button class="btn btn-primary" type="submit">Login</button>
+    <a class="btn btn-link" href="{% url 'registration' %}">Sign Up</a>
+    </div>
+    </form>
+    </li>
+    {% endif %}
+    </ul>
+    </div>
+    </nav>
+
+    <table class="table">
+    <thead>
+        <tr>
+
+    <h4style="color:white;"> Wiki for Techies{% csrf_token %}</h4>
+
+    <aside class="nav-bar"><img src="http://2.bp.blogspot.com/-Rl413gFse9Q/UVSiEQoiSJI/AAAAAAAAAL4/UBGZC3wQ4IQ/s1600/Wikipedia-logo_(inverse).png" style="float:center;align-items:center"  width="200" length="900" alt="wiki"></aside>
+</tr>
+</thead>
+<tbody>
+    <tr>
+            <div>
+            <div class="card-body">
+        {% for entry in entries %}
+        <tr class="card" style="margin:5px;background-color:#0f0f0a"><td class="card-body"><h5><a href="/wiki/{{entry}}" >{{entry}} </a></h5> </td></tr>
+        {% endfor%}
+    </div>
+</div>
+    </tr>
+</tbody>{{page|safe}}
+</table>
+{% endblock %}

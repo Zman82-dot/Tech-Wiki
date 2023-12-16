@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en" style="background-color:black;">
+    <head>
+        <meta content="dark" name="color-scheme">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body style="background-color:black">
+        <div class="row">
+            <div style="background-color:darkgrey;" class="sidebar col-lg-2 col-md-3">
+
+                <h5>Welcome!<b><a class="btn btn-link" href="#"style="color:whitesmoke;">{{ user.first_name }}<h4><b>{{ user.username }}</b></h4></a></b></h5>
+                <form action="{% url 'search' %}" method="GET">
+                    {% csrf_token %}
+                    <input class="search" type="text" name="q" placeholder="Search " style="border-radius:20px;box-shadow:2px 2px 2px black">
+                </form>
+                <div>
+                    <button class="button" style="border-radius:30px;background-image:linear-gradient(white, lightgrey);margin:10px;box-shadow:2px 2px 2px 2px black;"><a href="{% url 'index' %}" style="color:black;">Home<image src="https://www.pinclipart.com/picdir/big/405-4059078_png-file-svg-transparent-white-home-button-clipart.png"width=25px; style="margin:10px;"> </image> </a></button>
+                </div>
+                <div>
+                   <button style="border-radius:30px;background-image:linear-gradient(white, lightgrey);margin:10px;box-shadow:2px 2px 2px 2px black;color:black;"> <a href="{% url 'newWiki' %}" style="color:black;">   New Post<image src="https://www.freeiconspng.com/uploads/magnifier-16x16-icon-png-transparent-21.png" width="30px;"></image> </a></button>
+                    {% csrf_token%}
+                </div>
+                <div>  {% csrf_token%}
+               <button style="border-radius:30px;background-image:linear-gradient(white, lightgrey);margin:10px;box-shadow:2px 2px 2px 2px black;color:black;"> <a href="{% url 'random' %}"style="color:black;"> Random<image src="https://cdn3.iconfinder.com/data/icons/glypho-generic-icons/64/randomize-512.png" width="30px;"></image></a></button>
+                   <img src="https://en.wikipedia.org/static/images/icons/wikipedia.png"><br><br>
+                   <a href="https://www.facebook.com/"><image src="https://booklikes.com/upload/post/9/4/azure_94dce7fb18209888c7c4549e38e290d5.jpg" style="box-shadow: 2px 2px 2px black; margin:2px;" width="30px;"> </image></a>
+                  <a href="https://www.instagram.com"> <image src="https://emadmadrid.es/wp-content/uploads/2019/01/new-instagram-logo-png-transparent.png" style="box-shadow:2px 2px 2px black; boder-radius:30px;margin:2px;" width=30px;> </image></a>
+                    <a href="https://twitter.com/"><image src="https://freebiehive.com/wp-content/uploads/2023/08/Twitter-X-App-Icon-PNG.jpg"  style="border-radius:30px;box-shadow: 2px 2px 2px black;margin:2px;"   width="50px";></image></a>
+                </div>
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+                {% block body %}
+                {% endblock %}
+            </div>
+
+        </div>
+
+    </body>
+</html>

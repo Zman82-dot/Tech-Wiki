@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+{% load static %}
+
+{% block title %}
+{{entryTitle}} not found
+{% endblock %}
+
+{% block body %}
+
+<h1>{{entryTitle}}</h1>
+
+<div>
+    <h3>Page does not exist</h3>
+    <h3 class="h3_link">Create a <a href="{% url 'newWiki' %}">new page</a>?</h3>
+</div>
+{% endblock %}

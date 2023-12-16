@@ -1,0 +1,1 @@
+A dynamic web frame work used commonly in conjunction with it's counter-part Node.js. React is dynamic and reactive and best described as JavaScript on Steroids. React is a framework used by many leading tech companies such as Meta and Youtube.Once learned the power to create dynamic responsive web applications and User interfaces React skills are in demand

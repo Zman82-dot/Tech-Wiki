@@ -1,0 +1,42 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{{entryTitle}}
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar"style="background-image:url(https://www.udacity.com/blog/wp-content/uploads/2021/03/AI-vs-Deep-Learning_Blog-scaled.jpeg);color:whitesmoke;">
+    <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="#" style="color:whitesmoke;font-size:large;"><h3><b>Tech-Wiki</b></h3></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+    <li>
+    <a class="btn btn-link" href="#"style="color:whitesmoke;">{{ user.first_name }}({{ user.username }})</a>
+    <a class="btn btn-link" href="{% url 'logout' %}" style="color:whitesmoke;">👤 Logout</a>
+    </li>
+    {% else %}
+    <li>
+    <form class="form-inline" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        👤
+    <input type="text" class="form-control" placeholder="Username" name="username" >
+    <input type="password" class="form-control" placeholder="Username" name="psw" >
+    <button class="btn btn-primary" type="submit">Login</button>
+    <a class="btn btn-link" href="{% url 'registration' %}">Sign Up</a>
+    </div>
+    </form>
+    </li>
+    {% endif %}
+    </ul>
+    </div>
+    </nav>
+
+<a class=" btn btn-primary" href="/wiki/{{entryTitle}}/edit" role="button">Edit</a>
+
+<div class="paragraph" style="color:white;">
+    {{entry|safe}}
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@ def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
-@csrf_exempt
+
 def registration_request(request):
     context = {}
     if request.method == 'GET':
@@ -50,7 +50,7 @@ def registration_request(request):
             context['message'] = "User already exists."
             return render(request, 'encyclopedia/registration.html', context)
 
-@csrf_exempt
+
 def login_request(request):
     context = {}
     if request.method == "POST":
@@ -66,7 +66,7 @@ def login_request(request):
     else:
         return render(request, 'encyclopedia/login.html', context)
 
-@csrf_exempt
+
 def logout_request(request):
     logout(request)
     context={}
@@ -86,7 +86,7 @@ def entry(request,entry):
             "entry": markdowne.convert(page),
             "entryTitle":entry
         })
-@csrf_exempt
+
 def newWiki(request):
     if request.method == "POST":
         form = NewWikiForm(request.POST)
@@ -113,7 +113,7 @@ def newWiki(request):
             "form": NewWikiForm(),
             "existing": False
         })
-@csrf_exempt
+
 def edit(request, entry):
     if request.method == "POST":
         entryPage = util.get_entry(entry)
